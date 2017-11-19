@@ -80,11 +80,12 @@ ymax <- max(Qstats[,7] + 1) #Set y-axis limit above max flow value
 plot(xaxis, Qstats[,2], type = "l", col = "navy", lwd = 2, xlab = "Julian Date", 
      ylab = "Daily streamflow/Average Annual Streamflow", xlim = c(0,366), ylim = c(0,ymax), xaxt = "n")
 title(main = "Dimensionless Hydrograph")
+grid(NA, NULL, lty = "solid", lwd = 1)
 x <- pretty(xaxis, 12) #generate well-spaced tick marks for x-axis
 x <- c(1, x[!x %in% c(0)]) #Replace tick mark at x-axis=0 with a tick at x-axis=1 
 axis(side = 1, at = x, labels = dateVector[x]) #Label x-axis tick marks with corresponding julian date
 legend("topright", legend = c("0.90", "0.75", "0.50", "0.25", "0.10", "max/min"), lty = 1, 
-       lwd = 2.5, col = c("navy", "royalblue2", "red", "royalblue2", "navy", "black"))
+       lwd = 2.5, col = c("navy", "royalblue2", "red", "royalblue2", "navy", "black"), inset = .02)
 
 
 #Add fill color to plot
@@ -101,4 +102,7 @@ lines(xaxis, Qstats[,5], type = "l", col = "royalblue2", lwd = 1.5)
 lines(xaxis, Qstats[,6], type = "l", col = "navy", lwd = 2)
 lines(xaxis, Qstats[,7], type = "l", col = "black", lwd = 1.5) #Comment out line if not plotting max flow values
 lines(xaxis, Qstats[,8], type = "l", col = "black", lwd = 1.5) #Comment out line if not plotting min flow values
+
+dev.copy(pdf, "dimensionlessHydrograph.pdf")
+dev.off()
 
