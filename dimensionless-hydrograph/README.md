@@ -22,6 +22,12 @@ Timeseries data does not necessarily need to start and end on the water year dat
 
 Find test data in the DimHydrograph_TestData.csv file in the dimensionless-hydrograph repository. Save the test data to a local file which you will use as your working directory.  
 
+Next, save DimHydrographSingle.R and its dependent functions (CreateFlowMatrixUsingDateIndex.R and DefineDateIndices.R) to your working directory. Open DimHydrographSingle.R and modify the workingDir and inputFile variables (lines 7 and 8) to match the location of the test data on your machine. Make sure the water year variables are set as month=10 and day=01 in lines 11 and 12 to match the results of the test data. 
+
+You are now ready to run the code! The resulting Qstats matrix contains the data used to plot the dimensionless hydrograph. Compare the values of your resulting Qstats table with the DimHydrographTestResults.csv table in the dimensionless-hydrograph repository to verify your code is running correctly. You may also compare the output plot with the dimensionlessHydrograph.pdf file in the repository.  
+
+![Preview the output test plot here.](dimensionlessHydrograph.pdf)
+
 ## Sequelize CLI
 
 ```
