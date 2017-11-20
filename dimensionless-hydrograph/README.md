@@ -15,8 +15,8 @@ Enter your timeseries data in csv format, with the date in column 1 and flow in 
 | 10/02/2016 | 43 | 
 | etc... | etc... | 
 
-Data must have headers! Enter dates in month-day-year style, using the "date" cell format in Excel.     
-Timeseries data does not necessarily need to start and end on the water year dates, but data must be continuous with no missing values in the middle of a set. Therefore inputted data may begin on any date and end on any date, as long as there are no missing values within that range.
+Data must have headers! Enter dates in month/day/year style as shown in the example.     
+Timeseries data do not necessarily need to start and end on the water year dates, but data must be continuous with no missing values in the middle of a set. Therefore inputted data may begin on any date and end on any date, as long as there are no missing values within that range.
 
 ## Testing
 
