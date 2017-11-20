@@ -1,15 +1,21 @@
-# gutsy-api
+# Dimensionless Hydrograph Calculator for single timeseries
 
 >
 
 ## About
 
-This project uses [NodeJS](https://nodejs.org/), [ExpressJS](https://expressjs.com/), [Sequelize](http://docs.sequelizejs.com/), and [Postgres](https://www.postgresql.org/).
+This tool plots a dimensionless hydrograph of input flow timeseries data. The plot includes color-coded lines for the 90th, 75th, 50th, 25th, and 10th percentiles , and the maximum and minimum annual flow of the input data. The data is organized and processed by water year, which is defined by the user and can be any start date within the calendar year. 
 
-## Getting Started
+## Input Data Requirements
+Enter your timeseries data in csv format, with the date in column 1 and flow in column 2:
 
-1. Install [NodeJS](https://nodejs.org/), [npm](https://www.npmjs.com/) installed and [yarn](https://yarnpkg.com/en/).
-2. Install your dependencies
+| Date | Time| 
+|----------|------------|
+| 10/01/2016 | 37 | 
+| 10/02/2016 | 43 | 
+| etc... | etc... | 
+
+Data must have headers! Enter dates in month-day-year style, using the "date" cell format in Excel.     
 
     ```
     cd path/to/gutsy-api; yarn
