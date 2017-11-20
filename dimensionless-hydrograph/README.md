@@ -28,13 +28,15 @@ You are now ready to run the code! The resulting Qstats matrix contains the data
 
 ![Preview the output test plot here.](dimensionlessHydrograph.pdf)
 
-## Sequelize CLI
+## Plotting Details
+
+Plots are saved by default in the working directory to a file named dimensionlessHydrograph:
 
 ```
-$ npm install -g sequelize-cli
-
-$ sequelize model:create --name TodoItem --attributes content:string,complete:boolean #Generate a model
+dev.copy(pdf, "dimensionlessHydrograph.pdf")
+dev.off()
 ```
+A new plot generated with the same filename in the same working directory will overwrite any existing plots. Therefore if you need to create multiple plots, you must rename the plot within the dev.copy function each time. 
 
 ## Help
 
@@ -46,8 +48,4 @@ __0.1.0__
 
 - Initial release
 
-## License
 
-Copyright (c) 2016
-
-Licensed under the [MIT license](LICENSE).
