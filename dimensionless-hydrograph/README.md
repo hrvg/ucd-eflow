@@ -30,17 +30,17 @@ You are now ready to run the code! The resulting Qstats matrix contains the data
 
 ## Plotting Details
 
-Plots are saved by default in the working directory to a file named dimensionlessHydrograph:
+Plots are saved by default in the working directory to a file named dimensionlessHydrograph, in lines 106-107:
 
 ```
 dev.copy(pdf, "dimensionlessHydrograph.pdf")
 dev.off()
 ```
-A new plot generated with the same filename in the same working directory will overwrite any existing plots. Therefore if you need to create multiple plots, you must rename the plot within the dev.copy function each time. 
+A new plot generated with the same filename in the same working directory will overwrite any existing plots. Therefore if you need to create multiple plots, you must modify the code to rename the plot within the dev.copy function each time. 
 
 ## Help
 
-For more information on all the things you can do with Sequelize CLI visit [sequelize cli ](https://github.com/sequelize/cli).
+For assistance using this code, you may contact the developer at nkpatterson@ucdavis.edu. 
 
 ## Changelog
 
