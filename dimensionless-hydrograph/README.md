@@ -16,11 +16,11 @@ Enter your timeseries data in csv format, with the date in column 1 and flow in 
 | etc... | etc... | 
 
 Data must have headers! Enter dates in month-day-year style, using the "date" cell format in Excel.     
-Timeseries data does not necessarily need to start and end on the water year dates, but data must be continuous with no missing values in the middle of a set. For example, data arranged to with a January 1st - December 31st water year could begin on February 2nd, 1988, and run continuously until March 1st of 2010, and January 1st will mark the beginning of each new water year.
+Timeseries data does not necessarily need to start and end on the water year dates, but data must be continuous with no missing values in the middle of a set. Therefore inputted data may begin on any date and end on any date, as long as there are no missing values within that range.
 
 ## Testing
 
-Find test data in the DimHydrograph_TestData.csv file in the dimensionless-hydrograph repository. Save the test data to a local file which you will use as your working directory.  
+Find test data in the DimHydrograph_TestData.csv file in the dimensionless-hydrograph repository. Save the test data in a local folder which you will use as your working directory.  
 
 Next, save DimHydrographSingle.R and its dependent functions (CreateFlowMatrixUsingDateIndex.R and DefineDateIndices.R) to your working directory. Open DimHydrographSingle.R and modify the workingDir and inputFile variables (lines 7 and 8) to match the location of the test data on your machine. Make sure the water year variables are set as month=10 and day=01 in lines 11 and 12 to match the results of the test data. 
 
@@ -30,13 +30,13 @@ You are now ready to run the code! The resulting Qstats matrix contains the data
 
 ## Plotting Details
 
-Plots are saved by default in the working directory to a file named dimensionlessHydrograph, in lines 106-107:
+Plots are saved by default in the working directory to a pdf file named dimensionlessHydrograph.pdf, in lines 106-107:
 
 ```
 dev.copy(pdf, "dimensionlessHydrograph.pdf")
 dev.off()
 ```
-A new plot generated with the same filename in the same working directory will overwrite any existing plots. Therefore if you need to create multiple plots, you must modify the code to rename the plot within the dev.copy function each time. 
+A new plot generated with the same filename in the same working directory will overwrite any existing plots. Therefore if you need to create multiple plots, you must modify the code to rename the plot each time. 
 
 ## Help
 
