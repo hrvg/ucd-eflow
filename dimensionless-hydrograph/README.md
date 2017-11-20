@@ -20,7 +20,7 @@ Timeseries data does not necessarily need to start and end on the water year dat
 
 ## Testing
 
-Simply run `yarn test` and all your tests in the `test/` directory will be run.
+Find test data in the DimHydrograph_TestData.csv file in the dimensionless-hydrograph repository. Save the test data to a local file which you will use as your working directory.  
 
 ## Sequelize CLI
 
