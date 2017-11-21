@@ -7,6 +7,7 @@
 This tool plots a dimensionless hydrograph of input flow timeseries data. The plot includes color-coded lines for the 90th, 75th, 50th, 25th, and 10th percentiles , and the maximum and minimum annual flow of the input data. The data is organized and processed by a user-defined water year. 
 
 ## Input Data Requirements
+
 Enter your timeseries data in csv format, with the date in column 1 and flow in column 2:
 
 | Date | Flow | 
@@ -30,13 +31,13 @@ You are now ready to run the code! The resulting Qstats matrix contains the data
 
 ## Plotting Details
 
-Plots are saved by default in the working directory to a pdf file named dimensionlessHydrograph.pdf, in lines 106-107:
+Plots are saved by default in the working directory to a pdf file with the same name as your variable inputFile, defined at the beginning of the code:
 
 ```
-dev.copy(pdf, "dimensionlessHydrograph.pdf")
+dev.copy(pdf, paste(substr(inputFile, 1, nchar(inputFile)-4),'pdf',sep='.'))
 dev.off()
 ```
-A new plot generated with the same filename in the same working directory will overwrite any existing plots. Therefore if you need to create multiple plots, you must modify the code to rename the plot each time. 
+A new plot generated with the same filename in the same working directory will overwrite any existing plots. Therefore if you need to create multiple plots, make sure that the inputFile variable is renamed each time. 
 
 ## Help
 
@@ -47,5 +48,3 @@ For assistance using this code, you may contact the developer at nkpatterson@ucd
 __0.1.0__
 
 - Initial release
-
-
