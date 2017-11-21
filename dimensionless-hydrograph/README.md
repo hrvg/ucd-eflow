@@ -31,13 +31,13 @@ You are now ready to run the code! The resulting Qstats matrix contains the data
 
 ## Plotting Details
 
-Plots are saved by default in the working directory to a pdf file with the same name as your variable inputFile, defined at the beginning of the code:
+Plots are saved by default in the working directory to a pdf file with the same name as your inputFile variable:
 
 ```
 dev.copy(pdf, paste(substr(inputFile, 1, nchar(inputFile)-4),'pdf',sep='.'))
 dev.off()
 ```
-A new plot generated with the same filename in the same working directory will overwrite any existing plots. Therefore if you need to create multiple plots, make sure that the inputFile variable is renamed each time. 
+A new plot generated with the same filename in the same working directory will overwrite any existing plots of the same name. Therefore if you need to create multiple plots, make sure your inputFile variable is renamed each time. 
 
 ## Help
 
