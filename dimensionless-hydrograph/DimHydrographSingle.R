@@ -5,7 +5,7 @@ rm(list = ls())
 
 #Define working directory and file where timeseries flow data is located
 workingDir <- "E:/Noelle/R"
-inputFile <- "TimeSeriesTahoe.csv"
+inputFile <- "DimHydrograph_TestData.csv"
 
 #Define water year by two-digit month and day
 month <- 10
@@ -103,6 +103,8 @@ lines(xaxis, Qstats[,6], type = "l", col = "navy", lwd = 2)
 lines(xaxis, Qstats[,7], type = "l", col = "black", lwd = 1.5) #Comment out line if not plotting max flow values
 lines(xaxis, Qstats[,8], type = "l", col = "black", lwd = 1.5) #Comment out line if not plotting min flow values
 
-dev.copy(pdf, "dimensionlessHydrograph.pdf")
+
+
+dev.copy(pdf, paste(substr(inputFile, 1, nchar(inputFile)-4),'pdf',sep='.'))
 dev.off()
 
