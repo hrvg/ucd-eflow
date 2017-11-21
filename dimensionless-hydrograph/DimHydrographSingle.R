@@ -11,13 +11,6 @@ inputFile <- "DimHydrograph_TestData.csv"
 month <- 10
 day <- 01
 
-#Installing the needed R packages
-install.packages("xlsx")
-install.packages("rJava")
-
-#Load packages into library
-library(xlsx)
-
 setwd(workingDir)
 inputData <- read.csv(inputFile, header=TRUE, check.names = FALSE, na.strings = "#N/A")
 
