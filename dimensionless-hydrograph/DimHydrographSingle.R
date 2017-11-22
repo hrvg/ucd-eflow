@@ -4,7 +4,7 @@
 rm(list = ls())
 
 #Define working directory and file where timeseries flow data is located
-workingDir <- "E:/Noelle/R"
+workingDir <- getwd()
 inputFile <- "DimHydrograph_TestData.csv"
 
 #Define water year by two-digit month and day
