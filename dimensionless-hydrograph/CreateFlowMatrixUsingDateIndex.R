@@ -3,10 +3,10 @@ CreateFlowMatrixUsingDateIndex <- function(dateIndices, QData) {
   #If start date of data is offset from start date of water year, need an extra column in matrix.
   if (dateIndices[1] == 1) {
     numberOfWaterYears <- length(dateIndices)
+  } else if (dateIndices[1] != 1) {
+    numberOfWaterYears <- length(dateIndices) + 1
   }
-  else if (dateIndices[1] != 1) {
-    numberOfWaterYears <- length(dateIndices)+1
-  }
+  
   #Populate matrix, sorting by water year. Method of sorting changes depending on if the data begins
   #on the start date of the water year. 
   
@@ -22,11 +22,16 @@ CreateFlowMatrixUsingDateIndex <- function(dateIndices, QData) {
     else if (i == 1) {
       julianDate <- as.numeric(strftime(QData[,1], format = "%j")) 
       #Use julian date to help calculate offset between start date of data and start date of water year
-      offset <- julianDate[dateIndices[1]] 
       numberOfRecords <- length(QData[,2][1:dateIndices[1]-1])
-      #Difference between start date of data and start date of water year
-      startDate <- julianDate[1] - offset 
-      endDate <- startDate + numberOfRecords - 1
+      # Where to place values depends on whether or not it is a leap year
+      test <- julianDate[1:numberOfRecords] # Test whether or not first column of data has 366 days (i.e., is a leap year)
+      if (366 %in% test == TRUE) { 
+        startDate <- 366 - numberOfRecords + 1
+        endDate <- 366
+      } else {
+        startDate <- 365 - numberOfRecords + 1
+        endDate <- 365
+      }
       Qmatrix[startDate:endDate,i] <- QData[,2][1:numberOfRecords]
       dateIndices <- c(1,dateIndices)
     } 
