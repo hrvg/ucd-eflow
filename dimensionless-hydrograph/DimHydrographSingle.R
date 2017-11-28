@@ -67,7 +67,7 @@ colnames(Qstats) <- c("julianDay", "90%", "75%", "50%", "25%", "10%", "Max", "Mi
 xaxis <- c(1:rowLength)
 
 ymax <- max(Qstats[,7] + 1) #Set y-axis limit above max flow value
-#ymax <- max(Qstats[,2] + 1) #Alternatively set y-axis limit above 90% flow, if not plotting max flow line 
+#ymax <- max(Qstats[,1] + 1) #Alternatively set y-axis limit above 90% flow, if not plotting max flow line 
 
 #Create dimensionless hydrograph plot
 plot(xaxis, Qstats[,2], type = "l", col = "navy", lwd = 2, xlab = "Julian Date", 
