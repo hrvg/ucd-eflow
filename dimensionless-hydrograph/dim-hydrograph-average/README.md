@@ -1,20 +1,20 @@
-# Dimensionless Hydrograph Calculator for single timeseries
+# Dimensionless Hydrograph Calculator for multiple timeseries
 
 >
 
 ## About
 
-This tool plots a dimensionless hydrograph of input flow timeseries data. The plot includes color-coded lines for the 90th, 75th, 50th, 25th, and 10th percentiles , and the maximum and minimum annual flow of the input data. The data is organized and processed by a user-defined water year. 
+This tool plots a dimensionless hydrograph for a dataset of multiple timeseries. The plot includes color-coded lines for the 90th, 75th, 50th, 25th, and 10th percentiles, and the maximum and minimum annual flow across an average of all timeseries in the input data. The data is organized and processed by a user-defined water year. 
 
 ## Input Data Requirements
 
 Enter your timeseries data in csv format, with the date in column 1 and flow in column 2:
 
-| Date | Flow | 
-|----------|------------|
-| 10/01/2016 | 37 | 
-| 10/02/2016 | 43 | 
-| etc... | etc... | 
+| Date | Flow1 | Flow2 | Flow3 | etc. |
+|----------|------------|----------|---------|
+| 10/01/2016 | 37 | 45 | 32 | etc. | 
+| 10/02/2016 | 43 | 42 | 35 | etc. |
+| etc. | etc. | etc. | etc. | etc. | 
 
 Data must have headers! Enter dates in month/day/year style as shown in the example.     
 Timeseries data do not necessarily need to start and end on the water year dates, but data must be continuous with no missing values in the middle of a set. Therefore inputted data may begin on any date and end on any date, as long as there are no missing values within that range.
