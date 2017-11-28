@@ -8,20 +8,20 @@ This tool plots a dimensionless hydrograph for a dataset of multiple timeseries.
 
 ## Input Data Requirements
 
-Enter your timeseries data in csv format, with the date in column 1 and flow in column 2:
+Enter your timeseries data in csv format, with the date in column 1 and flows in subsequent columns:
 
 | Date | Flow1 | Flow2 | Flow3 | etc. |
-|----------|------------|----------|---------|
+|-------|-------|-------|------|------|
 | 10/01/2016 | 37 | 45 | 32 | etc. | 
 | 10/02/2016 | 43 | 42 | 35 | etc. |
 | etc. | etc. | etc. | etc. | etc. | 
 
 Data must have headers! Enter dates in month/day/year style as shown in the example.     
-Timeseries data do not necessarily need to start and end on the water year dates, but data must be continuous with no missing values in the middle of a set. Therefore inputted data may begin on any date and end on any date, as long as there are no missing values within that range.
+Timeseries data do not necessarily need to start and end on the water year dates, and all timeseries do not need to start and end on the same day. However, each timeseries must be continuous, with no missing values in the middle of a column. The dates column must span the entire range in which any one timeseries contains data. 
 
 ## Testing
 
-Find test data in the DimHydrograph_TestData.csv file in the dimensionless-hydrograph repository. Save the test data in a local folder which you will use as your working directory.  
+Find test data in the DimHydrograph_TestData.csv file in the dim-hydrograph-average repository. This test file contains flow gage data from publicaly available US Geological Survey records. Save the test data in a local folder which you will use as your working directory.  
 
 Next, save DimHydrographSingle.R and its dependent functions (CreateFlowMatrixUsingDateIndex.R and DefineDateIndices.R) to your working directory. Open DimHydrographSingle.R and modify the workingDir and inputFile variables (lines 7 and 8) to match the location of the test data on your machine. Make sure the water year variables are set as month=10 and day=01 in lines 11 and 12 to match the results of the test data. 
 
