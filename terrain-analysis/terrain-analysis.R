@@ -7,8 +7,8 @@ source("tweet-start-stop.R")
 tweetstart(scriptname)
 
 # lirsaries
-library(raster)
 library(rgdal)
+library(raster)
 library(RSAGA)
 saga_env <- rsaga.env(path="C:/Program Files (x86)/SAGA-GIS-2.2.2")
 library(sp)
@@ -29,12 +29,16 @@ get_terrain_metrics <- function(file){
 }
 
 # main
-datadir <- 'F:/hguillon/research/data/california-rivers/10m-DEM_hydrologic-recondition_(Colin-Byrne)/CAhuc4_rasters/elevation/wbd1802_z/'
+# datadir <- 'F:/hguillon/research/data/california-rivers/10m-DEM_hydrologic-recondition_(Colin-Byrne)/CAhuc4_rasters/elevation/wbd1802_z/'
+datadir <- 'F:/hguillon/research/data/california-rivers/10m-DEM_hydrologic-recondition_(Colin-Byrne)/NAD83_CA_TA_proj/sac10m_taproj/'
 datafile <- 'hdr.adf'
 rs <- get_terrain_metrics(paste0(datadir,datafile))
+hs <- hillShade(rs$slope,rs$aspect)
 
 # graph
 par(pty="s")
+plot(hs, col=grey(0:100/100), legend=FALSE, main='Sacramento Basin Hillshade Map')
+
 
 image(rs$hdr, 
 	main='Sacramento Basin Elevation Map', 
