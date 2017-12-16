@@ -67,7 +67,7 @@ get_std <- function(r=1000,DEM,fixed_size=TRUE,rmin=250){
 
 log10reg <- function(x){
 	if (!is.na(x$sd)){
-		model = lm(log10(x$sd) ~ log10(x$scale))
+		model <- lm(log10(x$sd) ~ log10(x$scale))
 		return (model)
 	}
 	else{
@@ -100,40 +100,117 @@ datafile <- 'hdr.adf'
 
 DEM <- raster(paste0(datadir,datafile))
 
+huc4 <- shapefile(paste0('F:/hguillon/research/data/california-rivers/gis-files/Shape/','WBDHU4.shp'))
+huc4 <- spTransform(huc4, crs(DEM))
+phuc4 <- polygons(huc4)
+huc6 <- shapefile(paste0('F:/hguillon/research/data/california-rivers/gis-files/Shape/','WBDHU6.shp'))
+huc6 <- spTransform(huc6, crs(DEM))
+phuc6 <- polygons(huc6)
+huc8 <- shapefile(paste0('F:/hguillon/research/data/california-rivers/gis-files/Shape/','WBDHU8.shp'))
+huc8 <- spTransform(huc8, crs(DEM))
+phuc8 <- polygons(huc8)
+huc10 <- shapefile(paste0('F:/hguillon/research/data/california-rivers/gis-files/Shape/','WBDHU10.shp'))
+huc10 <- spTransform(huc10, crs(DEM))
+phuc10 <- polygons(huc10)
+huc12 <- shapefile(paste0('F:/hguillon/research/data/california-rivers/gis-files/Shape/','WBDHU12.shp'))
+huc12 <- spTransform(huc12, crs(DEM))
+phuc12 <- polygons(huc12)
+
+
 # Yuba River extent (for faster calculations)
-e <- extent(-159140,-35058,114398,191331)
-DEM_yuba <- crop(DEM,e)
+huc_id = "18020125"
+i <- which(huc8$HUC8 == huc_id)
+
+DEM_yuba <- crop(DEM,phuc8[i])
+rm(DEM)
+gc()
+
+# image(DEM_yuba)
+# plot(phuc8[i],add=TRUE, lwd=3)
+# plot(phuc10[grep(huc_id,huc10$HUC10)],add=TRUE, lwd=2)
+# plot(phuc12[grep(huc_id,huc12$HUC12)],add=TRUE)
+
+
+# wDEM <- crop(DEM_yuba,phuc12[grep(huc_id,huc12$HUC12)][1])
+# mDEM <- mask(wDEM,phuc12[grep(huc_id,huc12$HUC12)][1])
+# image(mDEM)
 
 # scales
-r <- c(20000,10000,5000)
+r <- c(400,200,100)
 
-# get std rasters
-cl <- makeCluster(no_cores)
-stds <- parLapply(cl, r, get_std, DEM=DEM_yuba, rmin=min(r))
+ilist <- grep(huc_id,huc12$HUC12)
 
-# getValues
-stds_values <- parLapply(cl, stds, function(x) getValues(x))
+get_Draster <- function(i,DEM,r.=r,phuc=phuc12,huc=huc12,outdir = 'F:/hguillon/research/exploitation/out/'){
+	p <- phuc[i]
+	name <- huc$NAME[i]
+	id <- huc$HUC12[i]
+	print(paste0('Start : ',name))
+	updateStatus(paste(' Beep boop beep. I am starting my analysis of ',name,' at ',Sys.time(),'!',sep=''))
+	wDEM <- crop(DEM,p)
+	mDEM <- mask(wDEM,p)
+	stds <- lapply(r., get_std, DEM=mDEM, rmin=min(r.))
+	stds_values <- lapply(stds, function(x) getValues(x))
+	v <- seq(1,ncell(stds[[1]]),1) %>% rep(times = length(r.))
+	df <- data.frame(ncell = v, sd = unlist(stds_values))
+	df %>% arrange(ncell) -> df
+	df$scale = rep(r, times = ncell(stds[[1]]))
+	l <- split(df, df$ncell)
+	ll <- lapply(l, log10reg)
+	Ds <- lapply(ll, getD)
+	D_raster <- raster(stds[[1]])
+	D_raster <- setValues(D_raster,as.vector(unlist(Ds)))
+	writeRaster(D_raster, filename = paste0(outdir,name), format='raster')
+	updateStatus(paste(' Beep boop beep. I am done with my analysis of ',name,' at ',Sys.time(),'!',sep=''))
+	print(paste0('Stop : ',name))
+	pct <- which(ilist==i)/length(ilist)*10
+	print(paste0(pct,' done.'))
+}
 
-# df
-v <- seq(1,ncell(stds[[1]]),1) %>% rep(times = length(r))
-df <- data.frame(ncell = v, sd = unlist(stds_values))
-df %>% arrange(ncell) -> df
-df$scale = rep(r, times = ncell(stds[[1]]))
-l <- split(df, df$ncell)
-ll <- parLapply(cl, l, log10reg)
-Ds <- parLapply(cl, ll, getD)
-# qs <- parLapply(cl, ll, getq)
+lapply(ilist, get_Draster, DEM=DEM_yuba)
 
-stopCluster(cl)
 
-D_raster <- raster(stds[[1]])
-D_raster <- setValues(D_raster,as.vector(unlist(Ds)))
+# # get std rasters
+# # cl <- makeCluster(no_cores)
+# # stds <- parLapply(cl, r, get_std, DEM=mDEM, rmin=min(r))
+# stds <- lapply(r, get_std, DEM=mDEM, rmin=min(r))
 
-par(pty="s")
-plot(D_raster, 
-	main='Fractal Dimension Map', 
-	xlab='Easting (m)',
-	ylab='Northing (m)',
-	col=rainbow(10000,start=0,end=1/6))
+# # getValues
+# # stds_values <- parLapply(cl, stds, function(x) getValues(x))
+# stds_values <- lapply(stds, function(x) getValues(x))
+
+# # df
+# v <- seq(1,ncell(stds[[1]]),1) %>% rep(times = length(r))
+# df <- data.frame(ncell = v, sd = unlist(stds_values))
+# df %>% arrange(ncell) -> df
+# df$scale = rep(r, times = ncell(stds[[1]]))
+# l <- split(df, df$ncell)
+# # ll <- parLapply(cl, l, log10reg)
+# # Ds <- parLapply(cl, ll, getD)
+# # qs <- parLapply(cl, ll, getq)
+# ll <- lapply(l, log10reg)
+# Ds <- lapply(ll, getD)
+# # qs <- lapply(ll, getq)
+
+# # stopCluster(cl)
+
+# D_raster <- raster(stds[[1]])
+# D_raster <- setValues(D_raster,as.vector(unlist(Ds)))
+
+# par(pty="s")
+# plot(D_raster, 
+# 	main='Fractal Dimension Map', 
+# 	xlab='Easting (m)',
+# 	ylab='Northing (m)',
+# 	col=rainbow(10000,start=0,end=1/6))
+
+# q_raster <- raster(stds[[1]])
+# q_raster <- setValues(q_raster,as.vector(unlist(qs)))
+
+# par(pty="s")
+# plot(q_raster, 
+# 	main='Fractal Dimension Map', 
+# 	xlab='Easting (m)',
+# 	ylab='Northing (m)',
+# 	col=rainbow(10000,start=0,end=1/6))
 
 tweetstop(scriptname)
