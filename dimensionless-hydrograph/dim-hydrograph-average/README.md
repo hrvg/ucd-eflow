@@ -27,7 +27,7 @@ First, save the dim-hydrograph-average folder to a local folder you will use as 
 
 You are now ready to run the code! The resulting AvgQMatrix variable contains the data used to plot the dimensionless hydrograph. Compare the values of your resulting AvgQMatrix table with the DimHydrographAvg_TestData.csv table to verify your code is running correctly. You may also compare the output plot with the DimHydrographAvg_Results.pdf file in the repository.  
 
-![Preview the output test plot here.](.DimHydrographAvg_Results.pdf)
+![Preview the output test plot here.](DimHydrographAvg_Results.pdf)
 
 ## Plotting Details
 
