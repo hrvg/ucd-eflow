@@ -5,8 +5,8 @@
 rm(list = ls())
 
 # Define working directory and file where timeseries flow data is located
-workingDir <- "E:/Noelle/R/DimHydroFiles.GitHub/dimensionless-hydrograph"
-inputFile <- "TimeSeriesTahoe.csv"
+workingDir <- getwd()
+inputFile <- "DimHydrographAvg_TestData.csv"
 
 # Define water year by two-digit month and day
 month <- 10
@@ -66,6 +66,7 @@ for (n in 2:length(QMatrix)) {
   
   colnames(Qstats) <- c("90%", "75%", "50%", "25%", "10%", "Max", "Min")
   
+  # Create a list where each item is a matrix of summary stats for a single gage
   lst[[n-1]] <- as.matrix(Qstats)
   
 }
@@ -79,13 +80,13 @@ AvgQMatrix <- cbind(dateVector, AvgQMatrix)
 
 xaxis <- c(1:rowLength)
 
-#ymax <- max(AvgQMatrix[,7] + 1) # Set y-axis limit above max flow value
-ymax <- max(Qstats[,1] + 1) # Alternatively set y-axis limit above 90% flow, if not plotting max flow line 
+ymax <- max(AvgQMatrix[,7] + 1) # Set y-axis limit above max flow value
+#ymax <- max(AvgQMatrix[,2] + 1) # Alternatively set y-axis limit above 90% flow, if not plotting max flow line 
 
 # Create dimensionless hydrograph plot
 plot(xaxis, AvgQMatrix[,2], type = "l", col = "navy", lwd = 2, xlab = "Julian Date", 
      ylab = "Daily streamflow/Average Annual Streamflow", xlim = c(0,366), ylim = c(0,ymax), xaxt = "n")
-title(main = "Dimensionless Hydrograph")
+title(main = "Average Dimensionless Hydrograph")
 grid(NA, NULL, lty = "solid", lwd = 1)
 x <- pretty(xaxis, 12) # Generate well-spaced tick marks for x-axis
 x <- c(1, x[!x %in% c(0)]) # Replace tick mark at x-axis=0 with a tick at x-axis=1 
@@ -106,8 +107,8 @@ lines(xaxis, AvgQMatrix[,3], type = "l", col = "royalblue2", lwd = 1.5)
 lines(xaxis, AvgQMatrix[,4], type = "l", col = "red", lwd = 2)
 lines(xaxis, AvgQMatrix[,5], type = "l", col = "royalblue2", lwd = 1.5)
 lines(xaxis, AvgQMatrix[,6], type = "l", col = "navy", lwd = 2)
-#lines(xaxis, AvgQMatrix[,7], type = "l", col = "black", lwd = 1.5) # Comment out line if not plotting max flow values
-#lines(xaxis, AvgQMatrix[,8], type = "l", col = "black", lwd = 1.5) # Comment out line if not plotting min flow values
+lines(xaxis, AvgQMatrix[,7], type = "l", col = "black", lwd = 1.5) # Comment out line if not plotting max flow values
+lines(xaxis, AvgQMatrix[,8], type = "l", col = "black", lwd = 1.5) # Comment out line if not plotting min flow values
 
 # Save plot in a pdf named after the input data file
 dev.copy(pdf, paste(substr(inputFile, 1, nchar(inputFile)-4),'pdf',sep='.'))
