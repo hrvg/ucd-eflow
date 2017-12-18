@@ -6,7 +6,7 @@ rm(list = ls())
 
 # Define working directory and file where timeseries flow data is located
 workingDir <- "E:/Noelle/R/DimHydroFiles.GitHub/dimensionless-hydrograph"
-inputFile <- "TimeSeriesTahoe.csv"
+inputFile <- "DimHydrographAvg_testData.csv"
 
 # Define water year by two-digit month and day
 month <- 10
