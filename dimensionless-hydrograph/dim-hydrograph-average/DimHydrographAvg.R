@@ -3,6 +3,7 @@
 # Developed by Noelle Patterson, UC Davis Water Management Lab, 2017
 
 rm(list = ls())
+library("zoo")
 
 # Define working directory and file where timeseries flow data is located
 workingDir <- getwd()
@@ -24,8 +25,12 @@ lst <- list()
 # Calculate average summary stat values for each timeseries ######################
 for (n in 2:length(QMatrix)) {
   QData <- QMatrix[, c(1,n)] 
-  QData <- na.omit(QData)
+  
   colnames(QData) <- c("date", "Q")
+  QData$Q <- as.numeric(as.character(QData$Q))
+  QData <- na.trim(QData, sides = c("both")) # Remove leading and trailing NA's 
+  QData$Q <- na.approx(QData$Q) # Replace NA's in data with interpolated values 
+  
   QData$date <- as.Date(QData$date, "%m/%d/%Y") # Make sure date column is in date format
   QData$Q <- as.double(QData$Q)  # Make sure flow column is in number format
   QData <- as.matrix(QData)
