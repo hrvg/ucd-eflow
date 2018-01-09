@@ -17,7 +17,7 @@ Enter your timeseries data in csv format, with the date in column 1 and flow in 
 | etc... | etc... |
 
 Data must have headers! Enter dates in month/day/year style as shown in the example.     
-Timeseries data do not necessarily need to start and end on the water year dates, but data must be continuous with **no missing values in the middle of a set**. If your data contains NAs in the middle of a timeseries, the data must be preprocessed to remove these NAs through a method such as interpolation. Therefore inputted data may begin on any date and end on any date, as long as there are no missing values within that range.
+Timeseries data do not necessarily need to start and end on the water year dates. If blanks or non-numeric values are found in the flow column, linear interpolation will be used to fill missing values with approximations.
 
 ## Testing
 
