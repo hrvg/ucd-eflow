@@ -5,7 +5,7 @@
 dev.new()
 plot(ward_fit, labels=site_ids, cex=0.7, hang=-1)
 #rect.hclust(ward_fit, k=7, border="red") # box clusters at various cut levels
-rect.hclust(ward_fit, k=3, border="blue")
+rect.hclust(ward_fit, k=set.num, border="blue")
 
 ## NMDS plot
 

@@ -12,7 +12,7 @@ for (i in 2:max_clust) {
 }
 
 # Run the kmeans clustering for a chosen number of clusters
-clust_k <- 3 #indicate number of clusters
+clust_k <- set.num #indicate number of clusters
 k_means <- kmeans(rescale_df, clust_k, nstart=12, iter.max=1000) 
 db <- index.DB(rescale_df, k_means$cluster)
 
@@ -30,7 +30,7 @@ plot(1:max_clust, wss, type="b", xlab="number of Clusters",
 ## Plots k-means clusters based upon two geomorphic attributes after
 # stats_analysis.R has been run
 
-clust_num <- 3
+clust_num <- set.num
 x_col <- 3
 y_col <- 12
 

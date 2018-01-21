@@ -2,10 +2,10 @@
 ## Adapted from Belize Lane by Colin Byrne, UC Davis Postdoc, 2017
 
 print("********Ward's clustering**********")
-group_num <- 3
+group_num <- set.num
 
 ward_fit <- hclust(dist_df, method="ward.D") # ward.D vs ward.D2
-clust_num <- NbClust(rescale_df, distance="euclidean", min.nc=2, max.nc=15,
+clust_num <- NbClust(rescale_df, distance="euclidean", min.nc=3, max.nc=10,
 						method="ward.D")
 print(table(clust_num$Best.n[1,]))
 
