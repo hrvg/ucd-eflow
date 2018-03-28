@@ -1,5 +1,52 @@
-# ucd-eflow : UC Davis Environmental Flows Project
+# Environmental Flows Project - University of California, Davis
 
-This repository is for happily sharing code between the people involved in the project with coding tasks. This repository is **private**, meaning that the scripts updloaded there are not available to the general public. This might change in the future, upon completion of the project or if some people want to share code with research communities. Similarly, even if the repository is under my username, if you want to you can add your own public repository to highlight your work and coding skills.
+This repository is a meta-repository keeping track of the various repositories used in the [Environmental Flows](https://eflows.ucdavis.edu/) project from [UC Davis Water Management Lab](http://watermanagement.ucdavis.edu/).
 
-Consult https://github.com/hrvg/howto-git for a quick introduction to git hub : cheat sheet and introductory references.
+- [Project website](#project-website)
+- [Functional Flows Calculator](#functional-flows-calculator)
+- [Terrain analysis](#terrain-analysis)
+- [Geomorphic classification](#geomorphic-classification)
+- [Resources](#resources)
+
+# Project website
+
+## Contributor(s)
+- [Leo Qiu](https://github.com/leogoesger/)
+
+## Repositories
+- [UC Davis Water Management Lab eflow API](https://github.com/leogoesger/eflow-node-api)
+- [UC Davis Water Management Lab eflow client](https://github.com/leogoesger/eflow-client)
+
+# Functional Flows Calculator
+
+## Contributor(s)
+- [Belize Lane](https://github.com/bellearela)
+- [Noelle Patterson](https://github.com/NoellePatterson)
+- [Leo Qiu](https://github.com/leogoesger/)
+
+## Repositories
+- [Dimensionless Reference Hydrograph (DRH)](https://github.com/NoellePatterson/dim-hydro)
+- [Functional Flow Calculator](https://github.com/leogoesger/func-flow)
+
+
+# Terrain analysis
+
+## Contributor(s)
+- [Hervé Guillon](https://github.com/hrvg)
+
+## Repositories
+- [Modified version of the R raster.terrain function](https://github.com/hrvg/terrain_)
+- [CART- and WARD- related scripts](https://github.com/hrvg/super-barnacle)
+- [Slurm-related scripts](https://github.com/hrvg/vigilant-disco)
+
+# Geomorphic classification
+
+## Contributor(s)
+- [Colin Byrne](https://github.com/colinfb)
+
+## Repositories
+- 
+
+# Resources
+
+- [UCD Water Management Lab meta-repository](https://github.com/hrvg/ucd-water-mgmt-lab)
