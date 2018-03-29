@@ -49,4 +49,7 @@ This repository is a meta-repository keeping track of the various repositories u
 
 # Resources
 
+- [UCD eFlow Google Drive **Internal**](http://bit.ly/eflow_internal)
+- [UCD eFlow Google Drive **External**](http://bit.ly/eflow_external)
+- [UCD eFlow Box Drive - Big Data Files](http://bit.ly/eflow-bigdata)
 - [UCD Water Management Lab meta-repository](https://github.com/hrvg/ucd-water-mgmt-lab)
