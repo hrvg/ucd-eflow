@@ -8,15 +8,6 @@ This repository is a meta-repository keeping track of the various repositories u
 - [Geomorphic classification](#geomorphic-classification)
 - [Resources](#resources)
 
-# Project website
-
-## Contributor(s)
-- [Leo Qiu](https://github.com/leogoesger/)
-
-## Repositories
-- [UC Davis Water Management Lab eflow API](https://github.com/leogoesger/eflow-node-api)
-- [UC Davis Water Management Lab eflow client](https://github.com/leogoesger/eflow-client)
-
 # Functional Flows Calculator
 
 ## Contributor(s)
@@ -27,7 +18,6 @@ This repository is a meta-repository keeping track of the various repositories u
 ## Repositories
 - [Dimensionless Reference Hydrograph (DRH)](https://github.com/NoellePatterson/dim-hydro)
 - [Functional Flow Calculator](https://github.com/leogoesger/func-flow)
-
 
 # Terrain analysis
 
@@ -46,6 +36,15 @@ This repository is a meta-repository keeping track of the various repositories u
 
 ## Repositories
 - 
+
+# Project website
+
+## Contributor(s)
+- [Leo Qiu](https://github.com/leogoesger/)
+
+## Repositories
+- [UC Davis Water Management Lab eflow API](https://github.com/leogoesger/eflow-node-api)
+- [UC Davis Water Management Lab eflow client](https://github.com/leogoesger/eflow-client)
 
 # Resources
 
